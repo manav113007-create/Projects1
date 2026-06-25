@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat page</title>
+    <link rel="stylesheet" href="2style.css">
+    <body>
+
+<nav>
+    <a href="1index.html">Home</a>
+    <a href="chat.html">Chat💬</a>
+    <a href="study.html">Study 📚</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="about.html">About</a>
+</nav>
+
+<div class="app">
+    <aside class="sidebar">
+        <button class="new-chat">+ New Chat</button>
+
+        <div class="chat-list">
+            <div class="chat-item active">Study Plan</div>
+            <div class="chat-item">Python Basics</div>
+            <div class="chat-item">Workout & Diet</div>
+        </div>
+
+        <!-- Jarvis Logo -->
+        <div class="logo">
+            <img src="image.png" alt="Jarvis">
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="chat-header">
+            <h2>🤖 Chat with Jarvis</h2>
+        </div>
+
+        <div class="chat-messages">
+            <div class="message-bot">
+                Hello! I'm Jarvis, your AI companion.
+                How can I assist you today?
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input
+                type="text"
+                placeholder="Message Jarvis..."
+                id="userInput"
+            >
+            <button id="micButton">🎤</button>
+            <button
+                onclick="sendMessage()"
+                id="sendButton"
+            >
+                ➤
+            </button>
+        </div>
+
+    </main>
+</div>
+    <script>
+        const input=document.getElementById('userInput');
+        const sendButton=document.getElementById('sendButton');
+        const chatMessages=document.querySelector('.chat-messages');
+
+        function sendMessage(){
+            if(input.value.trim()==="")
+                return;
+            const userDiv=document.createElement('div');
+            userDiv.classList.add('message-user');
+            userDiv.textContent=input.value;
+            chatMessages.appendChild(userDiv);
+            input.value="";
+
+            chatMessages.scrollTop=chatMessages.scrollHeight;
+            // simulate bot response
+            setTimeout(()=>{
+                const botDiv=document.createElement('div');
+                botDiv.classList.add('message-bot');
+                botDiv.textContent="Jarvis is thinking...";
+                chatMessages.appendChild(botDiv);
+                chatMessages.scrollTop=chatMessages.scrollHeight;
+
+                setTimeout(()=>{
+                    botDiv.textContent="Here's a response from Jarvis!";
+                    chatMessages.scrollTop=chatMessages.scrollHeight;
+                },1000);
+            },500);
+
+        }
+        sendButton.addEventListener('click', sendMessage);
+    </script>
+</body>
+</html>
