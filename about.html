@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Jarvis</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+body{
+    background:#010f13;
+    color:white;
+    min-height:100vh;
+}
+/* Header */
+header{
+    text-align:center;
+    padding:50px 20px;
+}
+header h1{
+    color:#00bfff;
+    font-size:3rem;
+    text-shadow:0 0 15px #00bfff;
+}
+header p{
+    color:#9adff7;
+    margin-top:15px;
+    font-size:1.1rem;
+}
+
+.hero{
+    max-width:1000px;
+    margin:auto;
+    padding:30px;
+}
+.about-box{
+    background:#111827;
+    border:1px solid #00bfff;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 0 20px rgba(0,191,255,.15);
+}
+
+.about-box h2{
+    color:#00bfff;
+    margin-bottom:15px;
+}
+
+.about-box p{
+    line-height:1.8;
+    color:#ccefff;
+}
+.features{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.feature-card{
+    background:#1f2937;
+    border:1px solid #00bfff;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(0,191,255,.4);
+}
+
+.feature-card h3{
+    color:#00bfff;
+    margin-bottom:15px;
+}
+.feature-card p{
+    color:#4597b8;
+    line-height:1.6;
+}
+
+.jarvis-core{
+    margin-top:60px;
+    text-align:center;
+}
+.core-circle{
+    width:150px;
+    height:150px;
+    margin:auto;
+    border-radius:50%;
+    border:4px solid #00bfff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#00bfff;
+    font-weight:bold;
+    letter-spacing:4px;
+
+    box-shadow:
+    0 0 15px #00bfff,
+    0 0 40px rgba(0,191,255,.4);
+
+    animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+footer{
+    text-align:center;
+    margin-top:60px;
+    padding:25px;
+    color:#7fdfff;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>JARVIS</h1>
+    <p>Your Personal AI Companion</p>
+</header>
+
+<section class="hero">
+    <div class="about-box">
+        <h2>About Jarvis</h2>
+
+        <p>
+            Jarvis is an intelligent AI assistant designed to help
+            students stay productive, organized and focused.
+            Whether you need study assistance, quizzes,
+            flashcards or goal tracking, Jarvis provides
+            a smart environment for learning and growth.
+        </p>
+    </div>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <h3>📚 Study Hub</h3>
+            <p>
+                Learn efficiently with structured study plans,
+                resources and personalized guidance.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📝 Quizzes</h3>
+            <p>
+                Reinforce your knowledge with interactive
+                quizzes and instant feedback.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🎯 Goal Tracking</h3>
+            <p>
+                Set goals, track progress and maintain
+                consistency in your learning journey.
+            </p>
+        </div>
+    </div>
+
+    <div class="jarvis-core">
+        <div class="core-circle">
+            JARVIS
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>Jarvis AI Assistant • Version 1.0</p>
+</footer>
+
+<script>
+window.onload = function(){
+    console.log("Jarvis System Online");
+
+};
+</script>
+
+</body>
+</html>
