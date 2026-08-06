@@ -1,0 +1,404 @@
+/* =========================================================
+   Spider-Man: Brand New Day — Landing Page Stylesheet
+   Tailwind (via CDN, config in index.html) handles layout/utility
+   classes. Everything custom — glow, glass, animation, the
+   hero cover, dossier cards, the gallery grid — lives here.
+   ========================================================= */
+
+* { scroll-behavior: smooth; }
+body { background: #050505; color: #F5F5F5; font-family:'Poppins',sans-serif; overflow-x:hidden; }
+
+::selection { background:#E11D48; color:#fff; }
+
+/* ---------- Hero / poster section ---------- */
+/* Wrap your hero markup like:
+   <section id="home" class="hero">
+     <img id="parallaxBg" src="poster.jpg" alt="Spider-Man poster">
+     <div id="webCanvas-wrap"><canvas id="webCanvas"></canvas></div>
+     <div class="hero-content"> ...title, tagline, buttons, meta... </div>
+   </section>
+*/
+.hero {
+  position: relative;
+  width: 100%;
+  height: 78vh;          /* compact, controlled hero height */
+  min-height: 420px;
+  max-height: 640px;
+  overflow: hidden;
+  isolation: isolate;
+}
+#parallaxBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* fills the box, crops instead of stretching */
+  object-position: center 20%;
+  z-index: 0;
+  will-change: transform;
+}
+.hero::after {
+  /* readability gradient so text never fights the photo */
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 35%, rgba(5,5,5,0.85) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 6vw;
+}
+
+/* ---------- Live web canvas (signature element, drawn in script.js) ---------- */
+#webCanvas { position:absolute; inset:0; z-index:1; pointer-events:none; }
+
+/* ---------- Dossier cast cards ---------- */
+.dossier { position:relative; background: linear-gradient(155deg, rgba(20,20,24,0.9), rgba(5,5,5,0.95)); border:1px solid rgba(255,255,255,0.08); }
+.dossier::before {
+  content: attr(data-case); position:absolute; top:10px; right:12px;
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:.15em; color:rgba(148,163,184,0.5);
+}
+.dossier::after {
+  content:''; position:absolute; inset:0; border-radius:inherit; opacity:0; transition:opacity .5s ease;
+  background: linear-gradient(155deg, rgba(225,29,72,0.18), rgba(30,58,138,0.18));
+  box-shadow: inset 0 0 0 1px rgba(225,29,72,0.5);
+}
+.dossier:hover::after { opacity:1; }
+.dossier-photo { position:relative; aspect-ratio:1/1; overflow:hidden; background:#0a0a0a; display:flex; align-items:center; justify-content:center; }
+.dossier-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+.dossier-photo .glyph { font-family:'Bebas Neue',sans-serif; font-size:4.5rem; color:rgba(255,255,255,0.08); }
+.dossier-scan { position:absolute; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,#E11D48,transparent); opacity:0; }
+.dossier:hover .dossier-scan { animation: scanline 1.4s linear infinite; opacity:1; }
+@keyframes scanline { 0%{ top:0; } 100%{ top:100%; } }
+.redacted { display:inline-block; height:0.85em; background:#1a1a1a; border-radius:2px; vertical-align:middle; }
+
+/* ---------- Glow utilities ---------- */
+.glow-red { text-shadow: 0 0 12px rgba(225,29,72,0.75), 0 0 40px rgba(225,29,72,0.35); }
+.glow-blue { text-shadow: 0 0 12px rgba(30,58,138,0.85), 0 0 40px rgba(30,58,138,0.4); }
+.border-glow { box-shadow: 0 0 0 1px rgba(225,29,72,0.4), 0 0 25px rgba(225,29,72,0.15); }
+.btn-glow-red { box-shadow: 0 0 20px rgba(225,29,72,0.5); }
+.btn-glow-red:hover { box-shadow: 0 0 35px rgba(225,29,72,0.85); }
+
+/* ---------- Glass ---------- */
+.glass { background: rgba(5,5,5,0.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.glass-card { background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); }
+
+/* ---------- Particles ---------- */
+.particle { position:absolute; border-radius:50%; background: radial-gradient(circle, rgba(225,29,72,0.9), transparent 70%); animation: floatUp linear infinite; }
+@keyframes floatUp {
+  0% { transform: translateY(0) translateX(0); opacity:0; }
+  10% { opacity:1; }
+  90% { opacity:1; }
+  100% { transform: translateY(-110vh) translateX(20px); opacity:0; }
+}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal { opacity:0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in-view { opacity:1; transform: translateY(0); }
+.reveal-scale { opacity:0; transform: scale(.92); transition: opacity .8s ease, transform .8s ease; }
+.reveal-scale.in-view { opacity:1; transform: scale(1); }
+
+/* ---------- Ripple ---------- */
+.ripple { position:relative; overflow:hidden; }
+.ripple-circle { position:absolute; border-radius:50%; background: rgba(255,255,255,0.5); transform: scale(0); animation: rippleAnim .6s linear; pointer-events:none; }
+@keyframes rippleAnim { to { transform: scale(3.5); opacity:0; } }
+
+/* ---------- Hover scale / cards ---------- */
+.hover-lift { transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease; }
+.hover-lift:hover { transform: translateY(-10px) scale(1.02); }
+
+/* ---------- Gallery: responsive auto-fit grid, uniform tiles ---------- */
+/* ================================
+   CINEMATIC GALLERY
+================================ */
+
+.gallery-section{
+
+    padding:120px 7%;
+    background:#070707;
+
+}
+
+.gallery-heading{
+
+    text-align:center;
+    margin-bottom:70px;
+
+}
+
+.gallery-heading p{
+
+    color:#ff003c;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    font-size:14px;
+
+}
+
+.gallery-heading h2{
+
+    font-size:70px;
+    color:white;
+    margin:10px 0;
+
+}
+
+.gallery-heading span{
+
+    color:#999;
+    font-size:18px;
+
+}
+
+/* GRID */
+
+.gallery-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    grid-auto-rows:260px;
+
+    gap:25px;
+
+}
+
+/* CARDS */
+
+.gallery-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    cursor:pointer;
+
+    background:#111;
+
+    transition:.45s;
+
+}
+
+.gallery-card img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.7s;
+
+}
+
+/* Different Sizes */
+
+.large{
+
+    grid-column:span 2;
+
+    grid-row:span 2;
+
+}
+
+.wide{
+
+    grid-column:span 2;
+
+}
+
+.tall{
+
+    grid-row:span 2;
+
+}
+
+/* Hover */
+
+.gallery-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,.35),
+        0 25px 60px rgba(0,0,0,.6);
+
+}
+
+.gallery-card:hover img{
+
+    transform:scale(1.12);
+
+}
+
+/* Overlay */
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    padding:30px;
+
+    background:linear-gradient(to top,
+    rgba(0,0,0,.95),
+    transparent);
+
+    opacity:0;
+
+    transition:.45s;
+
+}
+
+.gallery-card:hover .overlay{
+
+    opacity:1;
+
+}
+
+.overlay h3{
+
+    color:white;
+
+    font-size:28px;
+
+    font-family:'Bebas Neue',sans-serif;
+
+    letter-spacing:2px;
+
+}
+
+/* Mobile */
+
+@media(max-width:1000px){
+
+.gallery-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.large,
+.wide,
+.tall{
+
+grid-column:span 1;
+grid-row:span 1;
+
+}
+
+}
+
+@media(max-width:650px){
+
+.gallery-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.gallery-heading h2{
+
+font-size:45px;
+
+}
+
+}
+
+/* ---------- Nav underline ---------- */
+.nav-link { position:relative; }
+.nav-link::after { content:''; position:absolute; left:0; bottom:-4px; width:0; height:2px; background: linear-gradient(90deg,#E11D48,#1E3A8A); transition: width .35s ease; }
+.nav-link:hover::after { width:100%; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width:8px; }
+::-webkit-scrollbar-track { background:#050505; }
+::-webkit-scrollbar-thumb { background: linear-gradient(#E11D48,#1E3A8A); border-radius:4px; }
+
+.section-title { font-family:'Bebas Neue',sans-serif; letter-spacing:0.04em; }
+
+@media (max-width: 640px) {
+  .hero { height: 62vh; min-height: 360px; }
+  #galleryGrid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-scale { transition:none !important; opacity:1 !important; transform:none !important; }
+  .particle { animation:none !important; }
+}
+/* ---------- Glass ---------- */
+.glass { background: rgba(5,5,5,0.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.glass-card { background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); }
+
+/* ---------- Particles ---------- */
+.particle { position:absolute; border-radius:50%; background: radial-gradient(circle, rgba(225,29,72,0.9), transparent 70%); animation: floatUp linear infinite; }
+@keyframes floatUp {
+  0% { transform: translateY(0) translateX(0); opacity:0; }
+  10% { opacity:1; }
+  90% { opacity:1; }
+  100% { transform: translateY(-110vh) translateX(20px); opacity:0; }
+}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal { opacity:0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in-view { opacity:1; transform: translateY(0); }
+.reveal-scale { opacity:0; transform: scale(.92); transition: opacity .8s ease, transform .8s ease; }
+.reveal-scale.in-view { opacity:1; transform: scale(1); }
+
+/* ---------- Ripple ---------- */
+.ripple { position:relative; overflow:hidden; }
+.ripple-circle { position:absolute; border-radius:50%; background: rgba(255,255,255,0.5); transform: scale(0); animation: rippleAnim .6s linear; pointer-events:none; }
+@keyframes rippleAnim { to { transform: scale(3.5); opacity:0; } }
+
+/* ---------- Hover scale / cards ---------- */
+.hover-lift { transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease; }
+.hover-lift:hover { transform: translateY(-10px) scale(1.02); }
+
+.gallery-item img { transition: transform .6s ease, filter .6s ease; }
+.gallery-item:hover img { transform: scale(1.12); filter: brightness(0.55); }
+
+/* ---------- Empty image slots (ready for real movie stills/posters) ---------- */
+.img-slot {
+  aspect-ratio: 3/4;
+  display:flex; align-items:center; justify-content:center;
+  border: 1.5px dashed rgba(225,29,72,0.35);
+  background: linear-gradient(155deg, rgba(225,29,72,0.06), rgba(30,58,138,0.06));
+  position:relative; transition: border-color .35s ease, background .35s ease;
+}
+.img-slot:hover { border-color: rgba(225,29,72,0.7); background: linear-gradient(155deg, rgba(225,29,72,0.12), rgba(30,58,138,0.1)); }
+.img-slot::before { content:'📷'; font-size:1.6rem; opacity:0.4; position:absolute; top:50%; left:50%; transform:translate(-50%,-70%); }
+.img-slot::after {
+  content: attr(data-label); position:absolute; bottom:16px; left:0; right:0; text-align:center;
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:.2em; color:rgba(148,163,184,0.55);
+}
+
+/* ---------- Nav underline ---------- */
+.nav-link { position:relative; }
+.nav-link::after { content:''; position:absolute; left:0; bottom:-4px; width:0; height:2px; background: linear-gradient(90deg,#E11D48,#1E3A8A); transition: width .35s ease; }
+.nav-link:hover::after { width:100%; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width:8px; }
+::-webkit-scrollbar-track { background:#050505; }
+::-webkit-scrollbar-thumb { background: linear-gradient(#E11D48,#1E3A8A); border-radius:4px; }
+
+.section-title { font-family:'Bebas Neue',sans-serif; letter-spacing:0.04em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-scale { transition:none !important; opacity:1 !important; transform:none !important; }
+  .particle { animation:none !important; }
+}
