@@ -407,16 +407,28 @@ button { font: inherit; color: inherit; }
 
 /* ---------- Gallery ---------- */
 .gallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  column-count: 2;
+  column-gap: 12px;
+  padding: 16px;
+}
+.gallery {
+  column-count: 2;
+  column-gap: var(--gap, 1rem);
 }
 .gallery__card {
-  position: relative; overflow: hidden; border-radius: var(--r-lg);
-  background: #111; aspect-ratio: 4 / 3;
-  transition: transform 0.45s var(--ease), box-shadow 0.45s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius, 12px);
+  background: #111;
+  break-inside: avoid;      /* replaces aspect-ratio: 4/3 */
+  margin-bottom: var(--gap, 1rem);
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
 }
-.gallery__card img { width: auto; height: auto; object-fit: cover; transition: transform 0.7s var(--ease); }
+.gallery__card img {
+  width: 100%;
+  height: auto;              /* was 100% — that's what forced the crop */
+  display: block;
+}
 .gallery__card figcaption {
   position: absolute; inset: auto 0 0 0;
   padding: clamp(1rem, 3vw, 1.75rem);
