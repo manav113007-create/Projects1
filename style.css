@@ -34,7 +34,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
@@ -44,7 +44,7 @@ body {
   font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.0625rem);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img, canvas, video { display: block; max-width: 100%; }
