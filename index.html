@@ -3,421 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Spider-Man: Brand New Day — official-style fan landing page. Trailer, cast, gallery and showtimes.">
 <title>Spider-Man: Brand New Day</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.4.1/tailwind.min.js"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          void: '#050505',
-          spidered: '#E11D48',
-          deepblue: '#1E3A8A',
-          websilver: '#94A3B8',
-        },
-        fontFamily: {
-          display: ['Bebas Neue','sans-serif'],
-          tech: ['Orbitron','sans-serif'],
-          body: ['Poppins','sans-serif'],
-        }
-      }
-    }
-  }
-</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="img/hero-poster-1600.webp" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="style.css">
-
-<!-- Fallback critical CSS: keeps sections from collapsing to 0 height
-     if Tailwind's CDN script or style.css fails to load (e.g. no
-     internet connection when opening the file directly). Tailwind
-     utility classes will override these once they load. -->
-<style>
-  html, body { margin: 0; background: #050505; color: #fff; font-family: 'Poppins', sans-serif; }
-  #home { min-height: 100vh; position: relative; }
-  #home img#parallaxBg,
-  #home > .absolute:first-child { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  #webCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-  section { position: relative; }
-  .gallery-item img { display: block; width: 100%; height: auto; }
-</style>
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600&display=swap">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600&display=swap">
+</noscript>
 </head>
-<body class="antialiased">
+<body>
 
-<marquee direction="left" style="color: red; font-weight: bold; font-size: 20px;">
-    🕷️ 🕸️ Marvel's Spiderman: Brand new day !! Now in Theaters !! 🎬🍿
-</marquee>
+<a class="skip-link" href="#home">Skip to content</a>
 
-<!-- Floating particles layer -->
-<div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
+<div class="ticker" role="status" aria-label="Announcement">
+  <p class="ticker__track">🕷️ 🕸️ Marvel's Spider-Man: Brand New Day — now in theatres 🎬🍿 &nbsp;&nbsp;•&nbsp;&nbsp; 🕷️ 🕸️ Marvel's Spider-Man: Brand New Day — now in theatres 🎬🍿</p>
+</div>
+
+<div id="particles" class="particles" aria-hidden="true"></div>
 
 <!-- ===================== NAVBAR ===================== -->
-<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
-  <div class="glass border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="javascript:void(0)" data-scroll="home" class="font-tech font-900 text-xl tracking-widest text-white flex items-center gap-2">
-        <span class="text-spidered glow-red text-2xl">🕸</span>
-        <span>SPIDEY<span class="text-spidered">.</span></span>
-      </a>
-   
-      <a href="https://in.bookmyshow.com/" target="_blank" rel="noopener"
-         class="ripple hidden md:inline-block bg-spidered hover:bg-red-600 text-white font-tech text-sm tracking-widest px-6 py-2.5 rounded-full btn-glow-red transition-all">
-        BOOK NOW
-      </a>
-      <button id="menuBtn" class="md:hidden text-white text-2xl">☰</button>
-    </div>
-    <!-- mobile menu -->
-    <div id="mobileMenu" class="md:hidden hidden flex-col px-6 pb-6 gap-4 font-body text-gray-300">
-      <a href="javascript:void(0)" data-scroll="home" class="mobile-link">Home</a>
-      <a href="javascript:void(0)" data-scroll="about" class="mobile-link">About</a>
-      <a href="javascript:void(0)" data-scroll="cast" class="mobile-link">Cast</a>
-      <a href="javascript:void(0)" data-scroll="trailer" class="mobile-link">Trailer</a>
-      <a href="javascript:void(0)" data-scroll="gallery" class="mobile-link">Gallery</a>
-      <a href="https://in.bookmyshow.com/" target="_blank" rel="noopener" class="bg-spidered text-white text-center font-tech tracking-widest py-2.5 rounded-full">BOOK NOW</a>
-    </div>
-  </div>
-</nav>
+<header id="navbar" class="nav">
+  <div class="nav__inner container">
+    <a class="nav__brand" href="#home" data-scroll="home">
+      <span class="nav__mark glow-red" aria-hidden="true">🕸</span>
+      <span>SPIDEY<span class="accent">.</span></span>
+    </a>
 
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav-link" href="#about" data-scroll="about">About</a>
+      <a class="nav-link" href="#cast" data-scroll="cast">Cast</a>
+      <a class="nav-link" href="#trailer" data-scroll="trailer">Trailer</a>
+      <a class="nav-link" href="#gallery" data-scroll="gallery">Gallery</a>
+    </nav>
+
+    <a class="btn btn--primary nav__cta ripple" href="https://in.bookmyshow.com/" target="_blank" rel="noopener">Book now</a>
+
+    <button id="menuBtn" class="nav__toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="nav__mobile" hidden>
+    <a href="#home" data-scroll="home">Home</a>
+    <a href="#about" data-scroll="about">About</a>
+    <a href="#cast" data-scroll="cast">Cast</a>
+    <a href="#trailer" data-scroll="trailer">Trailer</a>
+    <a href="#gallery" data-scroll="gallery">Gallery</a>
+    <a class="btn btn--primary" href="https://in.bookmyshow.com/" target="_blank" rel="noopener">Book now</a>
+  </div>
+</header>
+
+<main>
 <!-- ===================== HERO ===================== -->
-<section id="home" class="hero" style=" height: 400; width: 300;">
-  <img id="parallaxBg" src="spidy poster.jpg" alt="Spider-Man: Brand New Day poster">
-  <canvas id="webCanvas"></canvas>
-  <div class="hero-content">
-    <p>MARVEL STUDIOS PRESENTS</p>
-    <h1>SPIDER-MAN<br>BRAND NEW DAY</h1>
-    <!-- tagline, buttons, runtime/genre meta -->
-  </div>
-</section>
-  <!-- live generative web — signature element: nodes thread themselves into a web that follows the cursor -->
-  <canvas id="webCanvas" class="absolute inset-0 w-full h-full"></canvas>
+<section id="home" class="hero">
+  <img id="parallaxBg" class="hero__bg" src="img/hero-poster-1600.webp" width="800" height="450"
+       alt="Spider-Man: Brand New Day poster artwork" fetchpriority="high" decoding="async">
+  <canvas id="webCanvas" class="hero__web" aria-hidden="true"></canvas>
 
-  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center mt-16">
-    <p class="reveal font-tech text-websilver tracking-[0.4em] text-xs md:text-sm mb-6">MARVEL STUDIOS PRESENTS</p>
+  <div class="hero__content container">
+    <p class="eyebrow reveal">Marvel Studios presents</p>
 
-    <h1 class="reveal font-display text-6xl sm:text-8xl md:text-[9rem] leading-[0.85] text-white">
-      SPIDER<span class="text-spidered glow-red">-</span>MAN
+    <h1 class="hero__title reveal">
+      <span class="hero__title-line">SPIDER<span class="accent glow-red">-</span>MAN</span>
+      <span class="hero__title-sub">Brand New Day</span>
     </h1>
-    <h2 class="reveal font-display text-4xl sm:text-6xl md:text-7xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-spidered via-white to-deepblue glow-red mt-1">
-      BRAND NEW DAY
-    </h2>
 
-    <p class="reveal font-body italic text-gray-300 text-base md:text-lg mt-6 max-w-xl mx-auto">
-      "The world forgot Peter Parker. He hasn't forgotten them."
-    </p>
+    <p class="hero__tagline reveal">“The world forgot Peter Parker. He hasn't forgotten them.”</p>
 
-    <div class="reveal flex flex-wrap items-center justify-center gap-4 mt-6 font-tech text-xs md:text-sm text-websilver tracking-widest">
-      <span>IN THEATRES · JULY 31</span>
-      <span class="w-1 h-1 rounded-full bg-spidered"></span>
-      <span>DIRECTED BY DESTIN DANIEL CRETTON</span>
+    <ul class="hero__meta reveal">
+      <li>In theatres · July 31</li>
+      <li aria-hidden="true" class="dot"></li>
+      <li>Directed by Destin Daniel Cretton</li>
+    </ul>
+
+    <div class="hero__actions reveal">
+      <a class="btn btn--primary ripple" href="https://in.bookmyshow.com/" target="_blank" rel="noopener">🎟 Book now</a>
+      <a class="btn btn--ghost ripple" href="#trailer" data-scroll="trailer">▶ Watch trailer</a>
     </div>
 
-    <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-      <a href="https://in.bookmyshow.com/" target="_blank" rel="noopener"
-         class="ripple w-full sm:w-auto bg-spidered hover:bg-red-600 text-white font-tech tracking-widest px-9 py-4 rounded-full btn-glow-red transition-all text-sm">
-        🎟 BOOK NOW
-      </a>
-      <a href="https://youtu.be/8TZMtslA3UY?si=mb5nY_ERRjy_9C_P"
-         class="ripple w-full sm:w-auto glass-card hover:border-white/30 text-white font-tech tracking-widest px-9 py-4 rounded-full transition-all text-sm flex items-center justify-center gap-2">
-        ▶ WATCH TRAILER
-      </a>
-    </div>
-
-    <!-- stats -->
-    <div class="reveal grid grid-cols-3 gap-4 md:gap-10 mt-16 max-w-2xl mx-auto border-t border-white/10 pt-8">
-      <div>
-        <p class="font-tech text-2xl md:text-3xl text-white glow-blue">130<span class="text-sm">min</span></p>
-        <p class="text-[10px] md:text-xs tracking-[0.3em] text-gray-400 mt-1 uppercase">Runtime</p>
-      </div>
-      <div>
-        <p class="font-tech text-2xl md:text-3xl text-white glow-blue">Action</p>
-        <p class="text-[10px] md:text-xs tracking-[0.3em] text-gray-400 mt-1 uppercase">Genre</p>
-      </div>
-      <div>
-        <p class="font-tech text-2xl md:text-3xl text-white glow-blue">Multi</p>
-        <p class="text-[10px] md:text-xs tracking-[0.3em] text-gray-400 mt-1 uppercase">Language</p>
-      </div>
-    </div>
+    <dl class="hero__stats reveal">
+      <div><dt>Runtime</dt><dd>130<span>min</span></dd></div>
+      <div><dt>Genre</dt><dd>Action</dd></div>
+      <div><dt>Language</dt><dd>Multi</dd></div>
+    </dl>
   </div>
 
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce text-websilver text-xs tracking-widest">
-    ▼ SCROLL
-  </div>
+  <a class="hero__scroll" href="#about" data-scroll="about" aria-label="Scroll to about section">▼</a>
 </section>
 
 <!-- ===================== ABOUT ===================== -->
-<section id="about" class="relative py-28 px-6 bg-void overflow-hidden">
-  <div class="absolute -top-32 -left-32 w-96 h-96 bg-deepblue/20 rounded-full blur-[120px]"></div>
-  <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-spidered/20 rounded-full blur-[120px]"></div>
+<section id="about" class="section section--about">
+  <span class="blob blob--blue" aria-hidden="true"></span>
+  <span class="blob blob--red" aria-hidden="true"></span>
 
-  <div class="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+  <div class="container about__grid">
     <div class="reveal">
-      <p class="font-tech text-spidered tracking-[0.3em] text-xs mb-3">THE STORY</p>
-      <h2 class="section-title text-5xl md:text-6xl text-white mb-6">About The Movie</h2>
-      <p class="text-gray-400 leading-relaxed mb-8">
+      <p class="eyebrow accent">The story</p>
+      <h2 class="section-title">About the movie</h2>
+      <p class="lede">
         It's a brand new day for Peter Parker. Fighting crime full-time as Spider-Man in a world
         that no longer remembers him, the weight of watching his old friends move on without him
         sparks a change he may not have the power to control — a transformation that might be the
         only thing capable of stopping a devastating new threat that no one can even see.
       </p>
-      <div class="grid grid-cols-2 gap-5 font-body text-sm">
-        <div class="glass-card rounded-xl p-4">
-          <p class="text-gray-500 text-xs uppercase tracking-widest mb-1">Genre</p>
-          <p class="text-white font-medium">Action / Sci-Fi</p>
-        </div>
-        <div class="glass-card rounded-xl p-4">
-          <p class="text-gray-500 text-xs uppercase tracking-widest mb-1">Runtime</p>
-          <p class="text-white font-medium">2h 10m</p>
-        </div>
-        <div class="glass-card rounded-xl p-4">
-          <p class="text-gray-500 text-xs uppercase tracking-widest mb-1">Language</p>
-          <p class="text-white font-medium">English + more</p>
-        </div>
-        <div class="glass-card rounded-xl p-4">
-          <p class="text-gray-500 text-xs uppercase tracking-widest mb-1">Studio</p>
-          <p class="text-white font-medium">Marvel Studios</p>
-        </div>
-        <div class="glass-card rounded-xl p-4 col-span-2">
-          <p class="text-gray-500 text-xs uppercase tracking-widest mb-1">Director</p>
-          <p class="text-white font-medium">Destin Daniel Cretton</p>
-        </div>
-      </div>
+
+      <dl class="facts">
+        <div class="card"><dt>Genre</dt><dd>Action / Sci-Fi</dd></div>
+        <div class="card"><dt>Runtime</dt><dd>2h 10m</dd></div>
+        <div class="card"><dt>Language</dt><dd>English + more</dd></div>
+        <div class="card"><dt>Studio</dt><dd>Marvel Studios</dd></div>
+        <div class="card facts__wide"><dt>Director</dt><dd>Destin Daniel Cretton</dd></div>
+      </dl>
     </div>
 
-    <div class="reveal-scale relative">
-      <div class="rounded-2xl overflow-hidden border-glow hover-lift">
-        <img src="poster.jpg" alt="spidy" class="w-full h-auto">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-      </div>
-      <div class="absolute -bottom-6 -left-6 glass-card rounded-xl px-6 py-4 hidden sm:block">
-        <p class="font-tech text-3xl text-spidered glow-red">MCU</p>
-        <p class="text-xs text-gray-400 tracking-widest">PHASE 6</p>
-      </div>
-    </div>
+    <figure class="about__poster reveal-scale">
+      <img src="img/poster-1600.webp" width="600" height="889" loading="lazy" decoding="async"
+           alt="Spider-Man: Brand New Day theatrical poster">
+      <figcaption class="about__badge">
+        <strong class="glow-red">MCU</strong>
+        <span>Phase 6</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- ===================== TRAILER ===================== -->
-<!-- ===================== TRAILER SECTION ===================== -->
-<section id="trailer" class="py-24 bg-black">
+<section id="trailer" class="section">
+  <div class="container section__head reveal">
+    <p class="eyebrow accent">Watch</p>
+    <h2 class="section-title">Official trailer</h2>
+    <p class="section__sub">Experience Spider-Man: Brand New Day.</p>
+  </div>
 
-    <div class="text-center mb-12">
-        <h2 class="text-6xl font-display text-white">Official Trailer</h2>
-        <p class="text-gray-400 mt-4">
-            Experience Spider-Man: Brand New Day
-        </p>
-    </div>
-
-    <div id="videoContainer"
-         class="relative w-full max-w-7xl mx-auto rounded-3xl overflow-hidden shadow-2xl cursor-pointer">
-
-        <!-- Trailer Thumbnail -->
-        <img
-            src="trailer-cover.jpg"
-            class="w-full h-auto object-cover"
-            alt="Trailer Cover">
-
-        <!-- Dark Overlay -->
-        <div class="absolute inset-0 bg-black/30"></div>
-
-        <!-- Play Button -->
-        <div class="absolute inset-0 flex items-center justify-center">
-            <div
-                class="w-28 h-28 rounded-full bg-red-600 text-white text-5xl flex items-center justify-center hover:scale-110 duration-300">
-                ▶
-            </div>
-        </div>
-
-    </div>
-
+  <div class="container">
+    <button id="videoContainer" class="trailer reveal-scale" type="button"
+            data-video="8TZMtslA3UY" aria-label="Play the Spider-Man: Brand New Day trailer">
+      <img src="img/trailer-cover-1600.webp" width="686" height="386" loading="lazy" decoding="async"
+           alt="Trailer thumbnail">
+      <span class="trailer__play" aria-hidden="true">▶</span>
+    </button>
+  </div>
 </section>
-
-<!-- Smooth interactive player runtime script -->
-<script>
-const trailer = document.getElementById("videoContainer");
-
-trailer.onclick = () => {
-
-    trailer.innerHTML = `
-        <iframe
-            width="100%"
-            height="700"
-            src="https://www.youtube.com/embed/8TZMtslA3UY?autoplay=1"
-            frameborder="0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-        </iframe>
-    `;
-
-}
-</script>
 
 <!-- ===================== CAST ===================== -->
-<section id="cast" class="relative py-28 px-6 bg-void">
-  <div class="max-w-6xl mx-auto text-center mb-4 reveal">
-    <p class="font-tech text-spidered tracking-[0.3em] text-xs mb-3">CLASSIFIED FILE // CAST</p>
-    <h2 class="section-title text-5xl md:text-6xl text-white">The Cast</h2>
-    <p class="text-gray-500 text-sm mt-3 max-w-lg mx-auto">Hover a file to run the scan.</p>
+<section id="cast" class="section">
+  <div class="container section__head reveal">
+    <p class="eyebrow accent">Classified file // cast</p>
+    <h2 class="section-title">The cast</h2>
+    <p class="section__sub">Hover a file to run the scan.</p>
   </div>
 
-  <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
-    <!-- cast cards generated by script.js -->
-    <div id="castGrid" class="contents"></div>
-  </div>
+  <div id="castGrid" class="container cast__grid"></div>
 </section>
 
 <!-- ===================== GALLERY ===================== -->
-<!-- ===================== GALLERY ===================== -->
-<section id="gallery" class="gallery-section">
+<section id="gallery" class="section section--gallery">
+  <div class="container section__head reveal">
+    <p class="eyebrow accent">Visuals</p>
+    <h2 class="section-title">Spider-Man gallery</h2>
+    <p class="section__sub">Official posters • Action scenes • Behind the scenes</p>
+  </div>
 
-    <div class="gallery-heading">
-        <p>VISUALS</p>
-        <h2>Spider-Man Gallery</h2>
-        <span>Official Posters • Action Scenes • Behind the Scenes</span>
-    </div>
-
-    <div class="gallery-grid">
-
-        <div class="gallery-card large">
-            <img src="black.png" alt="">
-            <div class="overlay">
-                <h3>Main Poster</h3>
-            </div>
-        </div>
-
-        <div class="gallery-card">
-            <img src="spiderman1.jpg" alt="">
-            <div class="overlay">
-                <h3>Spider-Man Swing</h3>
-            </div>
-        </div>
-
-        <div class="gallery-card">
-            <img src="hero 4k.jpeg" alt="">
-            <div class="overlay">
-                <h3>Black Suit</h3>
-            </div>
-        </div>
-
-        <div class="gallery-card wide">
-            <img src="fight.jpg" alt="">
-            <div class="overlay">
-                <h3>Final Battle</h3>
-            </div>
-        </div>
-
-        <div class="gallery-card">
-            <img src="udi bbaba.png" alt="">
-            <div class="overlay">
-                <h3>Behind The Scenes</h3>
-            </div>
-        </div>
-
-        <div class="gallery-card tall">
-            <img src="Spider-Man 4k.jpeg" alt="">
-            <div class="overlay">
-                <h3>Movie Poster</h3>
-            </div>
-        </div>
-
-        <div class="gallery-card">
-            <img src="spiderman2.jpg" alt="">
-            <div class="overlay">
-                <h3>City Skyline</h3>
-            </div>
-        </div>
-
-        <div class="gallery-card wide">
-            <img src="spiderman1.jpg" alt="">
-            <div class="overlay">
-                <h3>Spidy - senses </h3>
-            </div>
-        </div>
-<div class="gallery-card wide">
-            <img src="spidy poster.jpg" alt="">
-            <div class="overlay">
-                <h3>Spider-Verse Energy</h3>
-            </div>
-        </div>
-    </div>
-
+  <div class="container gallery">
+    <figure class="gallery__card gallery__card--large reveal-scale">
+      <img src="img/black-suit-800.webp" width="800" height="513" loading="lazy" decoding="async" alt="Main poster">
+      <figcaption>Main poster</figcaption>
+    </figure>
+    <figure class="gallery__card reveal-scale">
+      <img src="img/swing-800.webp" width="800" height="446" loading="lazy" decoding="async" alt="Spider-Man swinging through the city">
+      <figcaption>Spider-Man swing</figcaption>
+    </figure>
+    <figure class="gallery__card reveal-scale">
+      <img src="img/hero-4k-1600.webp" width="736" height="1104" loading="lazy" decoding="async" alt="Black suit Spider-Man">
+      <figcaption>Black suit</figcaption>
+    </figure>
+    <figure class="gallery__card gallery__card--wide reveal-scale">
+      <img src="img/fight-800.webp" width="800" height="450" loading="lazy" decoding="async" alt="Final battle scene">
+      <figcaption>Final battle</figcaption>
+    </figure>
+    <figure class="gallery__card reveal-scale">
+      <img src="img/behind-scenes-800.webp" width="800" height="450" loading="lazy" decoding="async" alt="Behind the scenes on set">
+      <figcaption>Behind the scenes</figcaption>
+    </figure>
+    <figure class="gallery__card gallery__card--tall reveal-scale">
+      <img src="img/hero-poster-1600.webp" width="540" height="800" loading="lazy" decoding="async" alt="Movie poster">
+      <figcaption>Movie poster</figcaption>
+    </figure>
+    <figure class="gallery__card reveal-scale">
+      <img src="img/skyline-800.webp" width="450" height="800" loading="lazy" decoding="async" alt="City skyline at night">
+      <figcaption>City skyline</figcaption>
+    </figure>
+    <figure class="gallery__card gallery__card--wide reveal-scale">
+      <img src="img/spiderman-4k-1600.webp" width="736" height="1308" loading="lazy" decoding="async" alt="Spider-Verse energy">
+      <figcaption>Spider-Verse energy</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- ===================== WHY WATCH ===================== -->
-<section class="relative py-28 px-6 bg-void">
-  <div class="max-w-6xl mx-auto text-center mb-14 reveal">
-    <p class="font-tech text-spidered tracking-[0.3em] text-xs mb-3">THE EXPERIENCE</p>
-    <h2 class="section-title text-5xl md:text-6xl text-white">Why Watch</h2>
+<section class="section">
+  <div class="container section__head reveal">
+    <p class="eyebrow accent">The experience</p>
+    <h2 class="section-title">Why watch</h2>
   </div>
 
-  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-    <div class="reveal hover-lift glass-card rounded-2xl p-8 text-center">
-      <div class="w-14 h-14 mx-auto rounded-full bg-spidered/20 flex items-center justify-center text-2xl mb-5">💥</div>
-      <h3 class="font-tech text-white text-lg tracking-wide mb-2">Epic Action</h3>
-      <p class="text-gray-400 text-sm">Some of the most ambitious, gravity-defying action sequences in the MCU yet.</p>
-    </div>
-    <div class="reveal hover-lift glass-card rounded-2xl p-8 text-center" style="transition-delay:.1s">
-      <div class="w-14 h-14 mx-auto rounded-full bg-deepblue/30 flex items-center justify-center text-2xl mb-5">❤️</div>
-      <h3 class="font-tech text-white text-lg tracking-wide mb-2">Emotional Story</h3>
-      <p class="text-gray-400 text-sm">Follow Peter Parker's most personal journey as he rebuilds a life no one remembers.</p>
-    </div>
-    <div class="reveal hover-lift glass-card rounded-2xl p-8 text-center" style="transition-delay:.2s">
-      <div class="w-14 h-14 mx-auto rounded-full bg-white/10 flex items-center justify-center text-2xl mb-5">🌐</div>
-      <h3 class="font-tech text-white text-lg tracking-wide mb-2">Marvel Experience</h3>
-      <p class="text-gray-400 text-sm">A can't-miss blockbuster chapter of the Marvel Cinematic Universe, on the big screen.</p>
-    </div>
+  <div class="container features">
+    <article class="card feature reveal hover-lift">
+      <span class="feature__icon feature__icon--red" aria-hidden="true">💥</span>
+      <h3>Epic action</h3>
+      <p>Some of the most ambitious, gravity-defying action sequences in the MCU yet.</p>
+    </article>
+    <article class="card feature reveal hover-lift">
+      <span class="feature__icon feature__icon--blue" aria-hidden="true">❤️</span>
+      <h3>Emotional story</h3>
+      <p>Follow Peter Parker's most personal journey as he rebuilds a life no one remembers.</p>
+    </article>
+    <article class="card feature reveal hover-lift">
+      <span class="feature__icon" aria-hidden="true">🌐</span>
+      <h3>Marvel experience</h3>
+      <p>A can't-miss blockbuster chapter of the Marvel Cinematic Universe, on the big screen.</p>
+    </article>
   </div>
 </section>
 
 <!-- ===================== CTA ===================== -->
-<section class="relative py-32 px-6 overflow-hidden">
-  <div class="absolute inset-0">
-    <img src="spiderman2.jpg" class="w-full h-full object-cover opacity-30" alt="City backdrop">
-    <div class="absolute inset-0 bg-gradient-to-r from-void via-black/70 to-void"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-spidered/10 via-transparent to-deepblue/10"></div>
-  </div>
-  <div class="relative max-w-3xl mx-auto text-center reveal">
-    <h2 class="section-title text-5xl md:text-7xl text-white glow-red mb-6">Ready For The Adventure?</h2>
-    <p class="text-gray-400 mb-10">Grab your tickets before the city runs out of seats. Brand New Day, only in theatres.</p>
-    <a href="https://in.bookmyshow.com/" target="_blank" rel="noopener"
-       class="ripple inline-block bg-spidered hover:bg-red-600 text-white font-tech tracking-widest px-12 py-5 rounded-full btn-glow-red transition-all text-sm">
-      🎟 BOOK NOW ON BOOKMYSHOW
+<section class="cta">
+  <img class="cta__bg" src="img/skyline-1600.webp" width="736" height="1308" loading="lazy" decoding="async" alt="">
+  <div class="container cta__content reveal">
+    <h2 class="section-title glow-red">Ready for the adventure?</h2>
+    <p>Grab your tickets before the city runs out of seats. Brand New Day, only in theatres.</p>
+    <a class="btn btn--primary btn--lg ripple" href="https://in.bookmyshow.com/" target="_blank" rel="noopener">
+      🎟 Book now on BookMyShow
     </a>
   </div>
 </section>
+</main>
 
 <!-- ===================== FOOTER ===================== -->
-<footer class="relative bg-black border-t border-white/10 pt-16 pb-8 px-6">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 mb-10">
+<footer class="footer">
+  <div class="container footer__grid">
     <div>
-      <p class="font-tech text-xl text-white mb-3">SPIDEY<span class="text-spidered">.</span></p>
-      <p class="text-gray-500 text-sm leading-relaxed">A fan-made, educational landing page project inspired by Spider-Man: Brand New Day. Not affiliated with Marvel or Sony Pictures.</p>
+      <p class="footer__brand">SPIDEY<span class="accent">.</span></p>
+      <p>A fan-made, educational landing page project inspired by Spider-Man: Brand New Day. Not affiliated with Marvel or Sony Pictures.</p>
     </div>
-    <div>
-      <p class="text-white font-tech tracking-widest text-sm mb-4">NAVIGATE</p>
-      <ul class="space-y-2 text-gray-500 text-sm">
-        <li><a href="javascript:void(0)" data-scroll="home" class="hover:text-spidered">Home</a></li>
-        <li><a href="javascript:void(0)" data-scroll="about" class="hover:text-spidered">About</a></li>
-        <li><a href="javascript:void(0)" data-scroll="cast" class="hover:text-spidered">Cast</a></li>
-        <li><a href="javascript:void(0)" data-scroll="trailer" class="hover:text-spidered">Trailer</a></li>
-        <li><a href="javascript:void(0)" data-scroll="gallery" class="hover:text-spidered">Gallery</a></li>
+    <nav aria-label="Footer">
+      <p class="footer__heading">Navigate</p>
+      <ul>
+        <li><a href="#home" data-scroll="home">Home</a></li>
+        <li><a href="#about" data-scroll="about">About</a></li>
+        <li><a href="#cast" data-scroll="cast">Cast</a></li>
+        <li><a href="#trailer" data-scroll="trailer">Trailer</a></li>
+        <li><a href="#gallery" data-scroll="gallery">Gallery</a></li>
       </ul>
-    </div>
+    </nav>
     <div>
-      <p class="text-white font-tech tracking-widest text-sm mb-4">FOLLOW</p>
-      <div class="flex gap-4 text-xl text-gray-500">
-        <a href="javascript:void(0)" class="hover:text-spidered transition-colors">𝕏</a>
-        <a href="javascript:void(0)" class="hover:text-spidered transition-colors">▶</a>
-        <a href="javascript:void(0)" class="hover:text-spidered transition-colors">◎</a>
-        <a href="javascript:void(0)" class="hover:text-spidered transition-colors">f</a>
+      <p class="footer__heading">Follow</p>
+      <div class="footer__social">
+        <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X">𝕏</a>
+        <a href="https://youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+        <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
       </div>
     </div>
   </div>
-  <div class="max-w-6xl mx-auto border-t border-white/10 pt-6 text-center text-gray-600 text-xs leading-relaxed">
+  <div class="container footer__legal">
     <p>© 2026 Student Project. Built for educational / portfolio purposes only.</p>
-    <p class="mt-1">Spider-Man and all related characters are trademarks of Marvel Entertainment / Sony Pictures. This page is not an official product.</p>
+    <p>Spider-Man and all related characters are trademarks of Marvel Entertainment / Sony Pictures. This page is not an official product.</p>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>
